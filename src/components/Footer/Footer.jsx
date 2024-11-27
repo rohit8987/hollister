@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import logo from '../../assets/log.png';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import { FaTiktok } from "react-icons/fa";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 
 const Footer = () => {
@@ -8,6 +13,7 @@ const Footer = () => {
     const [isOn, setIsOn] = useState(false);
 
     return (
+        <>
         <div className="w-full bg-[#F5F5F5] flex justify-center">
             <div className="w-[90%] flex justify-center flex-col ">
                 <div className="text-sm flex justify-center">
@@ -15,7 +21,7 @@ const Footer = () => {
                 </div>
                 <div className="flex justify-between px-10 mt-10">
                     <div className="flex w-full">
-                        <div className="flex justify-evenly w-full">
+                        <div className="lg:flex justify-evenly w-full hidden lg:flex-row">
                             <div className="flex-1 w-full text-center justify-start flex flex-col">
                                 <div className="w-full flex mb-10 flex-col">
                                     <img className="w-full size-7 h-14" src={logo} alt="" />
@@ -91,7 +97,7 @@ const Footer = () => {
                                 </ul>
                             </div>
 
-                            <div className="flex-1 text-center flex flex-col gap-5">
+                            <div className="flex-1 text-center flex flex-col gap-5 py-10">
                                 <ul className="flex flex-col gap-4 text-xs text-gray-500">
                                     <li className="flex justify-start py-2">
                                         <a className="cursor-pointer hover:text-gray-800 flex gap-2">
@@ -151,21 +157,82 @@ const Footer = () => {
                                                 <h3 className='text-gray-900 font-semibold text-xs'>Subscribe</h3>
                                             </span>
                                         </div>
-                                        <div className="w-full flex justify-start">
-                                        <span className=' border-b-black'>
-                                            <a >Email Address</a>
-                                        </span>
-                                        <button className=' text-white bg-black rounded-md'>Join</button>
+                                        <div className="w-full flex justify-start border-b-black border-b mt-10">
+                                            <span className=' flex items-center border-b-black w-full'>
+                                                <a className='' >Email Address</a>
+                                            </span>
+
+                                            <span className='w-20 p-2  h-10 mb-5'>
+                                                <button className=' w-20 p-2 text-white bg-black rounded-3xl'>Join</button>
+                                            </span>
                                         </div>
-                                      
+
+                                        <div className="w-full">
+                                            <div className="flex justify-start flex-col">
+                                                <span className='w-full flex flex-col'>
+                                                    <span className=''>
+                                                        <a className='py-5 text-gray-900 font-bold text-sm flex justify-start ' >Trend With Us</a>
+                                                    </span>
+                                                    <p className='flex flex-col -mt-4 w-full text-xs  text-gray-500 '>See The Latest On Our Instagram Feed, And Connect With Us
+                                                        <span className='flex px-1'>On Facebook, Twitter & More. </span>
+                                                    </p>
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+                                        <div className=" flex py-6 w-full">
+                                            <ul className='flex w-full items-center gap-14'>
+                                                <li>
+                                                    <a className='text-gray-600' ><FaTiktok/></a>
+                                                </li>
+                                                <li>
+                                                    <a className='text-gray-600' ><InstagramIcon/></a>
+                                                </li>
+                                                <li>
+                                                    <a className='text-gray-600'><FacebookIcon/></a>
+                                                </li>
+                                                <li>
+                                                    <a className='text-gray-600'><PinterestIcon/></a>
+                                                </li>
+                                                <li>
+                                                    <a className='text-gray-600'><YouTubeIcon/></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+
+                        
                     </div>
                 </div>
             </div>
         </div>
+        <div className="w-full p-7 bg- bg-[#F5F5F5] flex justify-center">
+            <div className="w-[90%] flex justify-center">
+            <div className="w-full flex justify-center border-t border-gray-300 ">
+               <div className="pt-5 flex w-full">
+                <span className='flex w-full  items-center'>
+                    <ul className='flex w-full text-gray-400 gap-4  items-center'>
+                        <li className='flex  font-light'><a className='flex ml-1 underline hover:text-gray-900 cursor-pointer text-xs font-semibold' >Privacy</a></li>
+                        <li className='flex  items-center font-light'>|<a className='flex ml-2 hover:text-gray-900  underline cursor-pointer text-xs font-semibold' >Sale Terms</a></li>
+                        <li className='flex  items-center font-light'>|<a className='flex ml-2 hover:text-gray-900  underline cursor-pointer text-xs font-semibold' >Website Terms of Use</a></li>
+                        <li className='flex  items-center font-light'>|<a className='flex ml-2 hover:text-gray-900  underline cursor-pointer text-xs font-semibold' >Endorsements Social Media Engagement</a></li>
+                        <li className='flex  items-center font-light'>|<a className='flex ml-2 hover:text-gray-900  underline cursor-pointer text-xs font-semibold' >Site Map</a></li>
+                        <li className='flex  items-center font-light'>|<a className='flex ml-2 hover:text-gray-900  underline cursor-pointer text-xs font-semibold' >Do Not Sell or Share My Personal Info</a></li>
+                        <li className='flex  items-center font-light'>|<a className='flex ml-2 hover:text-gray-900  underline cursor-pointer text-xs font-semibold' >Responsible Disclosure</a></li>
+                    </ul>
+                </span>
+               </div>
+            </div>
+            </div>
+        </div>
+  
+        </>
     );
 };
 
