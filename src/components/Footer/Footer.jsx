@@ -154,16 +154,17 @@ const Footer = () => {
                                     <div className="">
                                         <div className="flex w-full p-3">
                                             <span className='flex justify-start'>
-                                                <h3 className='text-gray-900 font-semibold text-xs'>Subscribe</h3>
+                                                <h3 className='text-gray-900 font-semibold text-sm'>Subscribe</h3>
                                             </span>
                                         </div>
-                                        <div className="w-full flex justify-start border-b-black border-b mt-10">
-                                            <span className=' flex items-center border-b-black w-full'>
-                                                <a className='' >Email Address</a>
+                                        <div className="w-full flex justify-start border-b-black border-b mt-10  hover:border-b-blue-500 hover:border-b">
+                                            <span className='w-full flex items-center border-b-black '>
+                                
+                                                <a className='text-gray-500 text-sm' type="text" >Email Address</a>
                                             </span>
 
-                                            <span className='w-20 p-2  h-10 mb-5'>
-                                                <button className=' w-20 p-2 text-white bg-black rounded-3xl'>Join</button>
+                                            <span className='w-20 p-2  h-9 mb-5 flex '>
+                                                <button className=' w-20 p-2 justify-center flex items-center text-white bg-black rounded-3xl hover:bg-gray-600 font-semibold h-9'>Join</button>
                                             </span>
                                         </div>
 
@@ -171,7 +172,7 @@ const Footer = () => {
                                             <div className="flex justify-start flex-col">
                                                 <span className='w-full flex flex-col'>
                                                     <span className=''>
-                                                        <a className='py-5 text-gray-900 font-bold text-sm flex justify-start ' >Trend With Us</a>
+                                                        <a className='py-5 text-gray-900 font-bold text-sm flex justify-start uppercase ' >Trend With Us</a>
                                                     </span>
                                                     <p className='flex flex-col -mt-4 w-full text-xs  text-gray-500 '>See The Latest On Our Instagram Feed, And Connect With Us
                                                         <span className='flex px-1'>On Facebook, Twitter & More. </span>
@@ -212,12 +213,12 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <div className="w-full p-7 bg- bg-[#F5F5F5] flex justify-center">
+        <div className="w-full p-7 bg- bg-[#F5F5F5] flex justify-center ">
             <div className="w-[90%] flex justify-center">
-            <div className="w-full flex justify-center border-t border-gray-300 ">
+            <div className="w-full flex justify-center border-t border-gray-300 mb-20">
                <div className="pt-5 flex w-full">
                 <span className='flex w-full  items-center'>
-                    <ul className='flex w-full text-gray-400 gap-4  items-center'>
+                    <ul className='flex w-full text-gray-400 gap-4 text-xs items-center'>
                         <li className='flex  font-light'><a className='flex ml-1 underline hover:text-gray-900 cursor-pointer text-xs font-semibold' >Privacy</a></li>
                         <li className='flex  items-center font-light'>|<a className='flex ml-2 hover:text-gray-900  underline cursor-pointer text-xs font-semibold' >Sale Terms</a></li>
                         <li className='flex  items-center font-light'>|<a className='flex ml-2 hover:text-gray-900  underline cursor-pointer text-xs font-semibold' >Website Terms of Use</a></li>
