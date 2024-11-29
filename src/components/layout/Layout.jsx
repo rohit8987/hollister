@@ -1,20 +1,26 @@
-import Footer from "../Footer/Footer";
+
+import { Outlet } from "react-router-dom";
 import Header from "../header/Header";
+import Footer from "../Footer/Footer";
 import Navbar from "../navbar/Navbar";
 import NavbarBottom from "../navbar/NavbarBottom";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div>
       <Header />
-     <div className="sticky top-0 w-full z-50 shadow-md">
-      <Navbar  />
-     </div>
-      <NavbarBottom />
-      <div className="">
-        {children}
+      {/* Fixed Navbar */}
+      <div className="w-full sticky top-0 left-0 z-50 shadow-md">
+        <Navbar />
       </div>
-      <Footer />
+      <NavbarBottom />
+      <main style={{ minHeight: "", }}>
+        {/* Outlet renders the matched child route */}
+        <Outlet />
+      </main>
+     
+      <Footer/>
+     
     </div>
   );
 };

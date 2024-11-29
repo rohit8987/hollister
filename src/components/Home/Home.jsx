@@ -1,19 +1,11 @@
-
-import Banner from "../hero/Banner"
-import Hero from "../hero/Hero"
-import Layout from "../layout/Layout"
-
-
-
+import Hero from "../hero/Hero";
 
 const Home = () => {
   return (
-   <Layout>
-    <Hero/>
-  
-    {/* <Banner/> */}
-   </Layout>
-  )
-}
+    <div>
+      <Hero />
+    </div>
+  );
+};
 
-export default Home
+export default Home;

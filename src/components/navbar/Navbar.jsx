@@ -1,15 +1,18 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const navigate= useNavigate()
+    
     return (
         <div className="w-full bg-white flex justify-center">
             <div className="w-[90%] flex justify-center">
                 <div className="w-full flex justify-between">
 
                     <div className="flex justify-between">
-                        <img
+                        <img onClick={()=>navigate ("/")}
                             className="flex justify-start cursor-pointer"
                             src="https://img.hollisterco.com/is/image/anf/hco-2024-HOL-logo-desktop-new.svg"
                             alt="Logo"
@@ -17,7 +20,7 @@ const Navbar = () => {
                         <ul className="flex w-full gap-8 text-sm font-medium items-center relative">
                             <li className="relative group ">
 
-                                <span className="cursor-pointer ">Women's</span>
+                                <span onClick={()=>navigate("/productwomen")} className="cursor-pointer ">Women's</span>
 
                                 <div className="absolute flex-col left-0 w-[900px] h-[650px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
@@ -102,7 +105,7 @@ const Navbar = () => {
 
                             <li className="relative group ">
 
-                                <span className="cursor-pointer ">Men's</span>
+                                <span onClick={()=>navigate("/productmen")} className="cursor-pointer ">Men's</span>
 
                                 <div className="absolute flex-col left-0 w-[900px] h-[650px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
@@ -182,7 +185,7 @@ const Navbar = () => {
 
 
                             <li className="relative group ">
-                                <span className="cursor-pointer ">Jeans</span>
+                                <span onClick={()=> navigate("/jeans")} className="cursor-pointer ">Jeans</span>
                                 <div className="absolute flex-col left-0 w-[600px] h-[550px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
                                         <div className="flex justify-evenly mt-10 ml-10">
@@ -233,7 +236,7 @@ const Navbar = () => {
                             </li>
 
                             <li className="relative group ">
-                                <span className="cursor-pointer ">Activewear</span>
+                                <span onClick={()=> navigate("/activewear")} className="cursor-pointer ">Activewear</span>
                                 <div className="absolute flex-col left-0 w-[300px] h-[400px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
 
@@ -266,7 +269,7 @@ const Navbar = () => {
                             </li>
                             <li className="relative group ">
 
-                                <span className="cursor-pointer ">Sale</span>
+                                <span onClick={()=>navigate("/sale")} className="cursor-pointer ">Sale</span>
 
                                 <div className="absolute flex-col left-0 w-[500px] h-[250px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
@@ -303,7 +306,7 @@ const Navbar = () => {
                                             <div className="flex-1 ">
                                                 <div className="">
                                                     <ul className='flex flex-col gap-3 relative'>
-                                                        <img className='h-[300px]' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbAO-u-JBJ6lFWFf7ucQOt8aIdz6TVfBi6-g&s" alt="" />
+                                                        <img className='h-[300px]' src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbc4ac592-1460-4a44-bdc1-6973e0358ef8_609x492.png" alt="" />
                                                     </ul>
                                                     <div className="absolute inset-0 flex flex-col items-center justify-center text-wrap pointer-events-none mt-52">
                                                         <button className=" bg-white  text-gray-900 px-6 py-2 rounded-full hover:bg-gray-200 hover:text-black pointer-events-auto cursor-pointer">

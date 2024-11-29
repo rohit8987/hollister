@@ -104,7 +104,7 @@ const Hero = () => {
             <div className="relative">
               <img
                 className="w-full h-[80%] object-cover py-5"
-                src="https://akns-images.eonline.com/eol_images/Entire_Site/202479/rs_1024x759-240809093534-Copy_of_Blank_1024x759_69.jpg?fit=around%7C1024:759&output-quality=90&crop=1024:759;center,top"
+                src="https://img.hollisterco.com/is/image/anf/hco-20241003-D-HP-GillyNewArrivals.png"
                 alt="bannerOne"
               />
             </div>
@@ -127,7 +127,7 @@ const Hero = () => {
             <div className="relative">
               <img
                 className="w-full h-[80%] object-cover py-5"
-                src="https://denimology.com/wp-content/uploads/2024/08/tom2.jpg"
+                src="https://img.hollisterco.com/is/image/anf/hco-20241113-D-HP-Mens-Boxy-Puffers.png"
                 alt="bannerOne"
               />
             </div>
