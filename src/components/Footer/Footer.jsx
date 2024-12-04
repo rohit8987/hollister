@@ -183,21 +183,21 @@ const Footer = () => {
                                         </div>
 
                                         <div className=" flex py-6 w-full">
-                                            <ul className='flex w-full items-center gap-14'>
+                                            <ul className='flex w-full items-center gap-14 '>
                                                 <li>
-                                                    <a className='text-gray-600' ><FaTiktok/></a>
+                                                    <a className='text-gray-600 cursor-pointer hover:text-red-400' ><FaTiktok/></a>
                                                 </li>
                                                 <li>
-                                                    <a className='text-gray-600' ><InstagramIcon/></a>
+                                                    <a className='text-gray-600 cursor-pointer hover:text-red-600' ><InstagramIcon/></a>
                                                 </li>
                                                 <li>
-                                                    <a className='text-gray-600'><FacebookIcon/></a>
+                                                    <a className='text-gray-600 cursor-pointer hover:text-blue-700'><FacebookIcon/></a>
                                                 </li>
                                                 <li>
-                                                    <a className='text-gray-600'><PinterestIcon/></a>
+                                                    <a className='text-gray-600 cursor-pointer hover:text-blue-700'><PinterestIcon/></a>
                                                 </li>
                                                 <li>
-                                                    <a className='text-gray-600'><YouTubeIcon/></a>
+                                                    <a className='text-gray-600 cursor-pointer hover:text-red-700'><YouTubeIcon/></a>
                                                 </li>
                                             </ul>
                                         </div>

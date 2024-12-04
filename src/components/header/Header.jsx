@@ -4,6 +4,7 @@ import Account from "../account/Account"; // Import Account Component
 
 const Header = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const toggleDrawer = () => {
     setDrawerOpen(!isDrawerOpen);
@@ -12,17 +13,21 @@ const Header = () => {
   return (
     <>
       {/* Header (Sticky Navbar) */}
+      
+
       <div className="w-full flex bg-gray-100 justify-center  sticky z-40 top-0 shadow-2xl">
-        <button
-          onClick={toggleDrawer}
-          className="w-[90%] p-3 text-sm flex items-center gap-2 justify-end"
-        >
-          <LuUser className="text-xl" />
+      {/* Main Page Content */}
+      <button onClick={() => setIsCartOpen(true)}  className="w-[90%] p-3 text-sm flex items-center gap-2 justify-end">
+         <LuUser className="text-xl" />
           <p className="font-semibold text-gray-800 hover:text-gray-600">
             Sign In Or Create Account
           </p>
-        </button>
-      </div>
+      </button>
+      {/* Account as a Sidebar */}
+      <Account isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+    </div>
+
+
 
       {/* Sliding Drawer */}
       <div

@@ -1,18 +1,29 @@
+import { useState } from "react";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { useNavigate } from 'react-router-dom';
+import CartButton from "../cart/CartButton";
+
 
 const Navbar = () => {
-    const navigate= useNavigate()
-    
+
+    const [showSearchBar, setShowSearchBar] = useState(false); // State to toggle search bar
+
+    const toggleSearchBar = () => {
+        setShowSearchBar((prev) => !prev);
+    }
+    const navigate = useNavigate()
+
+    const [isCartOpen, setIsCartOpen] = useState(false);
+
     return (
         <div className="w-full bg-white flex justify-center">
             <div className="w-[90%] flex justify-center">
                 <div className="w-full flex justify-between">
 
                     <div className="flex justify-between">
-                        <img onClick={()=>navigate ("/")}
+                        <img onClick={() => navigate("/")}
                             className="flex justify-start cursor-pointer"
                             src="https://img.hollisterco.com/is/image/anf/hco-2024-HOL-logo-desktop-new.svg"
                             alt="Logo"
@@ -20,7 +31,7 @@ const Navbar = () => {
                         <ul className="flex w-full gap-8 text-sm font-medium items-center relative">
                             <li className="relative group ">
 
-                                <span onClick={()=>navigate("/productwomen")} className="cursor-pointer ">Women's</span>
+                                <span onClick={() => navigate("/productwomen")} className="cursor-pointer ">Women's</span>
 
                                 <div className="absolute flex-col left-0 w-[900px] h-[650px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
@@ -105,7 +116,7 @@ const Navbar = () => {
 
                             <li className="relative group ">
 
-                                <span onClick={()=>navigate("/productmen")} className="cursor-pointer ">Men's</span>
+                                <span onClick={() => navigate("/productmen")} className="cursor-pointer ">Men's</span>
 
                                 <div className="absolute flex-col left-0 w-[900px] h-[650px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
@@ -185,7 +196,7 @@ const Navbar = () => {
 
 
                             <li className="relative group ">
-                                <span onClick={()=> navigate("/jeans")} className="cursor-pointer ">Jeans</span>
+                                <span onClick={() => navigate("/jeans")} className="cursor-pointer ">Jeans</span>
                                 <div className="absolute flex-col left-0 w-[600px] h-[550px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
                                         <div className="flex justify-evenly mt-10 ml-10">
@@ -236,7 +247,7 @@ const Navbar = () => {
                             </li>
 
                             <li className="relative group ">
-                                <span onClick={()=> navigate("/activewear")} className="cursor-pointer ">Activewear</span>
+                                <span onClick={() => navigate("/activewear")} className="cursor-pointer ">Activewear</span>
                                 <div className="absolute flex-col left-0 w-[300px] h-[400px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
 
@@ -269,7 +280,7 @@ const Navbar = () => {
                             </li>
                             <li className="relative group ">
 
-                                <span onClick={()=>navigate("/sale")} className="cursor-pointer ">Sale</span>
+                                <span onClick={() => navigate("/sale")} className="cursor-pointer ">Sale</span>
 
                                 <div className="absolute flex-col left-0 w-[500px] h-[250px] bg-white shadow-lg hidden group-hover:block transition-opacity duration-300">
                                     <div className="flex flex-col w-full justify-between ">
@@ -325,21 +336,49 @@ const Navbar = () => {
                     {/* Search, Flag, Favorites, and Cart Icons */}
                     <div className="items-center flex justify-end">
                         <ul className="flex items-center mr-4 gap-8">
-                            <li className="cursor-pointer">
-                                <SearchOutlinedIcon className="font-extrabold text-10" />
-                            </li>
+                            <div className="relative flex items-center">
+                                {/* Search Icon */}
+                                <button
+                                    className="cursor-pointer p-2"
+                                    onClick={toggleSearchBar}
+                                    aria-label="Toggle search"
+                                >
+                                    <SearchOutlinedIcon className="font-extrabold text-2xl text-gray-700" />
+                                </button>
+
+                                {/* Search Input */}
+                                {showSearchBar && (
+                                    <input
+                                        type="text"
+                                        placeholder="Search..."
+                                        className="absolute right-full mr-4 w-80 p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
+                                        autoFocus
+                                    />
+                                )}
+                            </div>
                             <li className="size-6 flex items-center cursor-pointer">
                                 <img
                                     src="https://media.istockphoto.com/id/472317739/vector/flag-of-india.jpg?s=612x612&w=0&k=20&c=ejlQRX4C_Mb40wz1JQcB5vKYcOKlfRtry2W6UcX6mlo="
                                     alt="Flag"
                                 />
                             </li>
-                            <li>
+                            <li onClick={() => navigate("/mylist")}>
                                 <FavoriteBorderIcon className="font-black text-20 cursor-pointer" />
                             </li>
-                            <li>
+
+                            <div>
+                                {/* Main Page Content */}
+                                <button onClick={() => setIsCartOpen(true)}>
+                                    <ShoppingBagOutlinedIcon className="font-black text-20 cursor-pointer" />
+                                </button>
+
+                                {/* CartButton as a Sidebar */}
+                                <CartButton isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+                            </div>
+
+                            {/* <li onClick={() => navigate("/cartbutton")}>
                                 <ShoppingBagOutlinedIcon className="font-black text-20 cursor-pointer" />
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

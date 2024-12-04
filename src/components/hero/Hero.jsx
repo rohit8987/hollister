@@ -2,8 +2,11 @@
 import Slider from "react-slick";
 import hollister from "../../assets/Hollister.png"
 import ollister from "../../assets/ollister.png"
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+
+const navigate =useNavigate ()
 
   const settings = {
     dots: true,
@@ -54,7 +57,7 @@ const Hero = () => {
                 <li>you to wear these.</li>
               </ul>
             </span>
-            <button className=" border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black pointer-events-auto cursor-pointer">
+            <button onClick={() => navigate("/productwomen")} className=" border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black pointer-events-auto cursor-pointer">
               Shop Women's
             </button>
           </div>
@@ -117,7 +120,7 @@ const Hero = () => {
                 <li>that do it all.</li>
               </ul>
             </span>
-            <button className=" border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black pointer-events-auto cursor-pointer">
+            <button  onClick={() => navigate("/activewear")} className=" border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black pointer-events-auto cursor-pointer">
              All Activewear
             </button>
           </div>
@@ -140,7 +143,7 @@ const Hero = () => {
                 <li>These versatile puffers finish the look.</li>
               </ul>
             </span>
-            <button className=" border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black pointer-events-auto cursor-pointer">
+            <button  onClick={() => navigate("/productmen")} className=" border border-white text-white px-6 py-2 rounded-full hover:bg-white hover:text-black pointer-events-auto cursor-pointer">
           Shop Men's
             </button>
           </div>
