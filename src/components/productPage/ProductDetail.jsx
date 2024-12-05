@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageviewOutlinedIcon from "@mui/icons-material/PageviewOutlined";
 import { FiHeart } from "react-icons/fi";
 import { FaAngleRight } from "react-icons/fa";
-import { useParams } from "react-router-dom";
-import productData from "../productPage/ProductMenItems";
-import productDatas from "../productPage/ProductWomenItems"; 
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useWishlist } from "../mylist/WishlistContext";
+
 
 const ColorSelector = ({ colors = [], onColorSelect }) => {
     const [activeColor, setActiveColor] = useState(null);
@@ -75,6 +75,8 @@ const SizeSelector = ({ sizes = [], onSizeSelect }) => {
 const QuantitySelector = ({ quantities = [], onQuantityChange }) => {
     const [selectedQuantity, setSelectedQuantity] = useState(1);
 
+    const navigate = useNavigate()
+
     const handleQuantityChange = (event) => {
         const qty = parseInt(event.target.value, 10);
         setSelectedQuantity(qty);
@@ -98,7 +100,7 @@ const QuantitySelector = ({ quantities = [], onQuantityChange }) => {
                 </select>
 
             </div>
-            <div className="bg-[#0075c9] w-[22rem] h-16 flex justify-center items-center rounded-full hover:bg-gray-900 cursor-pointer">
+            <div onClick={()=> navigate("/cart")} className="bg-[#0075c9] w-[22rem] h-16 flex justify-center items-center rounded-full hover:bg-gray-900 cursor-pointer">
                 <button className="text-white text-xl font-semibold ">Get It Before It's Gone</button>
             </div>
 
@@ -107,6 +109,9 @@ const QuantitySelector = ({ quantities = [], onQuantityChange }) => {
 };
 
 const ProductDetail = ({ colors = [], sizes = [], quantities = [], }) => {
+
+ const navigate = useNavigate ()
+
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(1);
@@ -115,55 +120,73 @@ const ProductDetail = ({ colors = [], sizes = [], quantities = [], }) => {
     const handleSizeSelect = (size) => setSelectedSize(size);
     const handleQuantityChange = (quantity) => setSelectedQuantity(quantity);
 
-    
-        const { id } = useParams();
-        const product = productData.find((p) => p.id === parseInt(id));
-        const products = productDatas.find((p) => p.id === parseInt(id));
-    
-        if (!product) {
-            return <p>Product not found!</p>;
-        }
-        if (!products) {
-            return <p>Product not found!</p>;
-        }
+    const {addToWishlist} = useWishlist();
+
+
+    const { state } = useLocation()
+    const product = state?.product;
+
+
+    const handleAddToList = () => {
+        if (!product) return;
+
+        // Add product along with selected options to wishlist
+        addToWishlist({
+            ...product,
+            selectedColor,
+            selectedSize,
+            selectedQuantity,
+        });
+
+        alert("Product added to your list!");
+    };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    if (!product) {
+        return <p>Product not found!</p>;
+    }
+
 
     return (
         <div className="w-full flex-col flex justify-center items-center">
             <div className="bg-white h-10 w-full flex justify-center sticky z-0 top-[3.8rem] ">
-               <div className="w-[80%] flex justify-start items-center">
-               <ul className="  justify-start items-center flex text-gray-500 gap-3 font-semibold text-sm cursor-pointer">
-            <li className="flex items-center "><a className="mr-2">Women's</a><FaAngleRight/></li>
-            <li className="flex items-center"><a className="mr-2">Jackets & Coats</a><FaAngleRight/></li>
-            <li className="flex items-center"><a >Puffer</a></li>
-          </ul>
-               </div>
+                <div className="w-[80%] flex justify-start items-center">
+                    <ul className="  justify-start items-center flex text-gray-500 gap-3 font-semibold text-sm cursor-pointer">
+                        <li className="flex items-center "><a className="mr-2">Women's</a><FaAngleRight /></li>
+                        <li className="flex items-center"><a className="mr-2">Jackets & Coats</a><FaAngleRight /></li>
+                        <li className="flex items-center"><a >Puffer</a></li>
+                    </ul>
+                </div>
             </div>
             <div className="bg-white py-8 w-full flex justify-center">
                 <div className="w-[80%] flex justify-center">
                     <div className="grid grid-cols-2 ml-64 gap-">
                         {/* Product Images */}
-                        <div  className="flex-col grid grid-cols-2 gap-6 h-[44rem] cursor-pointer">
-                         
+                        <div className="flex-col grid grid-cols-2 gap-6 h-[44rem] cursor-pointer">
+
                             {product.images.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Product Image ${index + 1}`}
-                                className="w-full h-full object-cover rounded-md"
-                            />
-                        ))}
-                           
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Product Image ${index + 1}`}
+                                    className="w-full h-full object-cover rounded-md"
+                                />
+                            ))}
+
                         </div >
 
                         {/* Product Details */}
                         <div className="flex justify-center w-full p-10 px-10">
                             <div className="flex flex-col gap-5">
                                 <h1 className="uppercase text-3xl font-bold text-black">
-                                {product.name}
+                                    {product.name}
                                 </h1>
                                 <span className="text-gray-700">
                                     <p className="text-gray-900 line-through text-sm font-semibold">
-                                    {product.originalPrice}
+                                        {product.originalPrice}
                                     </p>
                                     <p className="text-sm font-semibold text-blue-900">{product.offerPrice}</p>
                                 </span>
@@ -230,9 +253,9 @@ const ProductDetail = ({ colors = [], sizes = [], quantities = [], }) => {
                                         />
                                     </div>
                                     <div className="w-full flex justify-center mt-10">
-                                        <div className="flex gap-4 w-[28rem] justify-center items-center cursor-pointer rounded-full border border-[#e7e7e3] p-4 hover:bg-[#e7e7e3]">
+                                        <div onClick={handleAddToList} className="flex gap-4 w-[28rem] justify-center items-center cursor-pointer rounded-full border border-[#e7e7e3] p-4 hover:bg-[#e7e7e3]">
                                             <span className="font-semibold text-10"><FiHeart className=" text-gray-900 font-semibold " /></span>
-                                            <button className="text-xl font-semibold">Add To List</button>
+                                            <button  className="text-xl font-semibold">Add To List</button>
                                         </div>
                                     </div>
                                     <hr className="mt-5" />

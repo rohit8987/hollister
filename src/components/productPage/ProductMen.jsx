@@ -2,7 +2,7 @@
 import Slider from "react-slick";
 import { AiOutlineHeart, AiFillHeart, AiOutlineDown } from "react-icons/ai";
 import ZoomInOutlinedIcon from '@mui/icons-material/ZoomInOutlined';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import product from "../productPage/ProductMenItems"
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +27,9 @@ const ProductMen = () => {
     setIsOpen((prev) => !prev); // Toggle dropdown state
   };
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
 
   const [likedProducts, setLikedProducts] = useState({}); // State to track liked status for each product
 
@@ -264,7 +266,7 @@ const ProductMen = () => {
                       </Slider>
 
                       {/* Hover Quick View */}
-                      <div  onClick={() => navigate(`/product/${product.id}`)} className="absolute inset-0 opacity-0 p-2 group-hover:opacity-100 flex items-end justify-center transition-opacity w-full">
+                      <div onClick={() => navigate(`/product/${product.id}`, { state: { product } })} className="absolute inset-0 opacity-0 p-2 group-hover:opacity-100 flex items-end justify-center transition-opacity w-full">
                         <button className="  text-gray-800 p-2 rounded-full hover:bg-gray-50 w-full justify-center items-center gap-2">
                           <ZoomInOutlinedIcon />
                           Quick View

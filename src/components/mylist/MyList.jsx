@@ -1,29 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import ZoomInOutlinedIcon from "@mui/icons-material/ZoomInOutlined";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useWishlist } from "./WishlistContext";
 
 const MyList = () => {
     const navigate = useNavigate();
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            img: "https://img.hollisterco.com/is/image/anf/KIC_334-4099-00026-120_model1?policy=product-medium",
-            name: "Baggy Sweatpants",
-            price: "INR 5,536.27",
-        },
-        {
-            id: 2,
-            img: "https://img.hollisterco.com/is/image/anf/KIC_334-4142-00070-900_model1?policy=product-medium",
-            name: "Dodge Hellcat Graphic Baggy Sweatpants",
-            price: "INR 8,500.00",
-        },
-        
-    ]);
 
-    const handleRemoveItem = (id) => {
-        setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-    };
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const { wishlist, removeFromWishlist } = useWishlist();
 
     return (
         <div className="w-full flex justify-center">
@@ -44,43 +32,48 @@ const MyList = () => {
                     </div>
 
                     <div className="mt-10 px-5">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {items.map((item, index) => (
-                                <div key={index} className="relative group">
-                                    {/* Image with onClick */}
-                                    <img
-                                        src={item.img}
-                                        alt={`Item ${index + 1}`}
-                                        className="w-80 h-96 cursor-pointer"
-                                        onClick={() => navigate(`/product/${item.id}`)}
-                                    />
-                                    <p className="text-sm p-2 font-semibold text-gray-800 w-full">{item.name}</p>
-                                    <p className="text-lg p-2 font-semibold text-gray-800">{item.price}</p>
+                        {wishlist.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {wishlist.map((item, index) => (
+                                    <div key={index} className="relative group">
+                                        <img
+                                            src={item.img}
+                                            alt={`Item ${index + 1}`}
+                                            className="w-80 h-96 cursor-pointer"
+                                            onClick={() => navigate(`/product/${item.id}`)}
+                                            onError={(e) => {
+                                                e.target.onerror = null; // Prevent infinite loop
+                                                e.target.src = "/fallback-image.jpg"; // Replace with fallback image path
+                                                console.log(wishlist);
 
-                                    {/* Hover Buttons */}
-                                    <div className="w-full px-4 absolute inset-0 flex justify-center items-center mt-56 gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <button
-                                            className="w-full text-sm bg-transparent border border-gray-200 flex items-center justify-center gap-1 text-black font-semibold px-4 py-2 rounded hover:bg-gray-100"
-                                            onClick={(e) => {
-                                                e.stopPropagation(); // Prevent navigation
-                                                handleRemoveItem(item.id); // Remove item
                                             }}
-                                        >
-                                            <FaHeart /> Added To List
-                                        </button>
-                                        <button
-                                            className="w-full text-sm bg-transparent border border-gray-200 flex items-center justify-center gap-1 text-black font-semibold px-4 py-2 rounded hover:bg-gray-100"
-                                            onClick={(e) => {
-                                                e.stopPropagation(); // Prevent navigation
-                                                alert("Quick View");
-                                            }}
-                                        >
-                                            <ZoomInOutlinedIcon /> Quick View
-                                        </button>
+                                        />
+                                        <p className="text-sm p-2 font-semibold text-gray-800 w-full">{item.name}</p>
+                                        <p className="text-lg p-2 font-semibold text-gray-800">{item.price}</p>
+
+                                        <div className="w-full px-4 absolute -inset-2 flex justify-center items-center mt-56 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <button
+                                                className="w-full text-xs bg-transparent border border-gray-200 flex items-center justify-center gap-1 text-black font-semibold px-3 py-2 rounded hover:bg-gray-100"
+                                                onClick={() => removeFromWishlist(item.id)}
+                                            >
+                                                <FaHeart className="font-bold" /> Remove from List
+                                            </button>
+                                            <button
+                                                className="w-full text-xs bg-transparent border border-gray-200 flex items-center justify-center gap-1 text-black font-semibold px-3 py-1 rounded hover:bg-gray-100"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    alert("Quick View");
+                                                }}
+                                            >
+                                                <ZoomInOutlinedIcon /> Quick View
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-lg text-gray-600">Your list is empty!</p>
+                        )}
                     </div>
                 </div>
             </div>

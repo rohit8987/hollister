@@ -1,8 +1,8 @@
 
 import Slider from "react-slick";
-import { AiOutlineHeart, AiFillHeart,AiOutlineDown } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart, AiOutlineDown } from "react-icons/ai";
 import ZoomInOutlinedIcon from '@mui/icons-material/ZoomInOutlined';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import product from "../productPage/ProductWomenItems"
 import { FaAngleRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ const settings = {
 
 const Activewear = () => {
 
-  const navigate = useNavigate ()
+  const navigate = useNavigate()
 
   const [isOpen, setIsOpen] = useState(false); // State to manage dropdown visibility
 
@@ -29,6 +29,9 @@ const Activewear = () => {
     setIsOpen((prev) => !prev); // Toggle dropdown state
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [likedProducts, setLikedProducts] = useState({}); // State to track liked status for each product
 
@@ -43,7 +46,8 @@ const Activewear = () => {
     <div className="w-full justify-center flex bg-white ">
       <div className="w-[80%] h-full bg-white">
         {/* Women's Section - Fixed */}
-        <div className="w-full bg-white text-sm border-none  text-gray-400 sticky top-[4rem] z-50 p-2 flex gap-2 cursor-pointer ">
+        
+        <div className="w-full bg-white text-sm border-none  text-gray-400 sticky top-[3.8rem] z-0 p-2 flex gap-2 cursor-pointer ">
           Women's <a className="text-sm flex items-center"> <FaAngleRight /></a> <p className=""> Activewear</p>
         </div>
 
@@ -59,21 +63,21 @@ const Activewear = () => {
                   <a
                     className="text-2xl text-gray-500 hover:text-gray-600 cursor-pointer font-semibold uppercase"
                   >
-                   Activewear
+                    Activewear
                   </a>
                 </li>
                 <li>
                   <a
                     className="text-xs text-gray-500 hover:text-gray-600 cursor-pointer font-medium"
                   >
-                   Gilly Hicks  Tops
+                    Gilly Hicks  Tops
                   </a>
                 </li>
                 <li>
                   <a
                     className="text-xs text-gray-500 hover:text-gray-600 cursor-pointer font-medium"
                   >
-                   Gilly Hicks Gilly Hicks Accessories
+                    Gilly Hicks Gilly Hicks Accessories
                   </a>
                 </li>
                 <li>
@@ -87,7 +91,7 @@ const Activewear = () => {
                   <a
                     className="text-xs text-gray-500 hover:text-gray-600 cursor-pointer font-medium"
                   >
-                   Gilly Hicks Workout Sets
+                    Gilly Hicks Workout Sets
                   </a>
                 </li>
                 <li>
@@ -99,9 +103,9 @@ const Activewear = () => {
                 </li>
               </ul>
 
-              
 
-              
+
+
 
               <ul className="py-5">
                 <li>
@@ -155,9 +159,9 @@ const Activewear = () => {
 
           <div className="w-full flex justify-center bg-white p-5">
             <div className="w-full h-full ml-5">
-            <div className="flex justify-between p-5">
+              <div className="flex justify-between p-5">
                 <div className=" uppercase text-xl font-bold w-full flex items-center">
-                Gilly Hicks activewear
+                  Gilly Hicks activewear
                 </div>
                 <div className="relative">
                   {/* Dropdown Trigger */}
@@ -166,7 +170,7 @@ const Activewear = () => {
                     className="flex items-center border-b-black border-b justify-between gap-2 p-2  text-gray-800  w-80"
                     onClick={toggleDropdown}
                   >
-                   
+
                     <span className="text-xl font-semibold">Featured</span>
                     <AiOutlineDown className="text-gray-600 " />
                   </button>
@@ -176,19 +180,19 @@ const Activewear = () => {
                     <div className="absolute top-full mt-2 w-80 h-40 bg-white shadow-md rounded-md overflow-y-auto z-50">
                       <ul className="flex flex-col px-8 py-2 font-semibold">
                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                         Newest
+                          Newest
                         </li>
                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                        Price:Low to High
+                          Price:Low to High
                         </li>
                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                           Price:high to Low
                         </li>
                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                         Customer Ratings
+                          Customer Ratings
                         </li>
                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                         Best Selling
+                          Best Selling
                         </li>
                       </ul>
                     </div>
@@ -200,19 +204,19 @@ const Activewear = () => {
                   <div
                     key={product.id}
                     className="relative group h-[40rem] rounded-lg shadow-md overflow-hidden"
-                   
+
                   >
                     {/* Favorite Icon */}
                     <button
-            onClick={() => toggleLike(product.id)} // Pass product ID to toggle like
-            className="absolute top-2 right-2 p-2 rounded-full shadow-md z-10"
-          >
-            {likedProducts[product.id] ? (
-              <AiFillHeart className="text-xl text-red-600" /> // Red filled heart
-            ) : (
-              <AiOutlineHeart className="text-xl text-gray-600" /> // Gray outlined heart
-            )}
-          </button>
+                      onClick={() => toggleLike(product.id)} // Pass product ID to toggle like
+                      className="absolute top-2 right-2 p-2 rounded-full shadow-md z-10"
+                    >
+                      {likedProducts[product.id] ? (
+                        <AiFillHeart className="text-xl text-red-600" /> // Red filled heart
+                      ) : (
+                        <AiOutlineHeart className="text-xl text-gray-600" /> // Gray outlined heart
+                      )}
+                    </button>
 
                     {/* Product Image Slider */}
                     <div className="relative w-full h-[22rem]">
@@ -228,7 +232,7 @@ const Activewear = () => {
                       </Slider>
 
                       {/* Hover Quick View */}
-                      <div  onClick={() => navigate(`/product/${product.id}`)} className="absolute inset-0 opacity-0 p-2 group-hover:opacity-100 flex items-end justify-center transition-opacity w-full">
+                      <div onClick={() => navigate(`/product/${product.id}`, { state: { product } })} className="absolute inset-0 opacity-0 p-2 group-hover:opacity-100 flex items-end justify-center transition-opacity w-full">
                         <button className="  text-gray-800 p-2 rounded-full hover:bg-gray-50 w-full justify-center items-center gap-2">
                           <ZoomInOutlinedIcon />
                           Quick View

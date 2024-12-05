@@ -17,15 +17,21 @@ import ProductWomenItems from "./components/productPage/ProductWomenItems"
 import ProductDetail from "./components/productPage/ProductDetail"
 import MyList from "./components/mylist/MyList";
 import CartButton from "./components/cart/CartButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+
 
 const App = () => {
   const colors = ["#F5F5DC", "#bb7f71", "#050505", "#8391ce"];
   const sizes = ["XS", "S", "M", "L", "XL"];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+}, []);
 
  
 
   return (
+   
     <BrowserRouter>
     
       <Routes>
@@ -52,6 +58,7 @@ const App = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+  
   );
 };
 
