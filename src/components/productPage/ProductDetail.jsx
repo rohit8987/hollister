@@ -165,7 +165,7 @@ const ProductDetail = ({ colors = [], sizes = [], quantities = [], }) => {
                 <div className="w-[80%] flex justify-center">
                     <div className="grid grid-cols-2 ml-64 gap-">
                         {/* Product Images */}
-                        <div className="flex-col grid grid-cols-2 gap-6 h-[44rem] cursor-pointer">
+                        <div className="flex-col grid grid-cols-2 gap-6  content-start cursor-pointer">
 
                             {product.images.map((image, index) => (
                                 <img
